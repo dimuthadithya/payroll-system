@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ParameterController;
+use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('employees', EmployeeController::class)->middleware('check.role:admin,hr');
     Route::resource('parameters', ParameterController::class)->middleware('role.hierarchy:hr');
+    Route::resource('payrolls', PayrollController::class)->middleware('role.hierarchy:hr');
+    Route::get('payrolls/generate', [PayrollController::class, 'create'])->name('payrolls.create');
+    Route::post('payrolls/generate', [PayrollController::class, 'store'])->name('payrolls.store');
 });
 
 
