@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
     // })->middleware(['employee.or.higher']);
 
     Route::resource('employees', EmployeeController::class)->middleware('check.role:admin,hr');
+    Route::resource('parameters', ParameterController::class)->middleware('role.hierarchy:hr');
 });
 
 
