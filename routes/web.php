@@ -4,6 +4,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -37,6 +38,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('employees', EmployeeController::class)->middleware('check.role:admin,hr');
     Route::resource('parameters', ParameterController::class)->middleware('role.hierarchy:hr');
     Route::resource('payrolls', PayrollController::class)->middleware('role.hierarchy:hr');
+
+    Route::prefix('reports')->middleware('role.hierarchy:hr')->group(function () {
+        Route::get('/', [ReportController::class, 'index'])->name('reports.index');
+        Route::get('/monthly', [ReportController::class, 'monthly'])->name('reports.monthly');
+        Route::get('/employee/{employee}', [ReportController::class, 'employee'])->name('reports.employee');
+    });
 });
 
 
