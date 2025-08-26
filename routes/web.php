@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\PayrollController;
@@ -20,17 +21,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Route::get('/admin/dashboard', function () {
-    //     return "welcome admin";
-    // })->middleware(['admin.only']);
-
-    // Route::get('/hr/reports', function () {
-    //     return "welcome hr";
-    // })->middleware(['hr.access']);
-
-    // Route::get('/employee/portal', function () {
-    //     return "welcome employee";
-    // })->middleware(['employee.or.higher']);
 
     Route::get('payrolls/generate', [PayrollController::class, 'create'])->name('payrolls.create');
     Route::post('payrolls/generate', [PayrollController::class, 'store'])->name('payrolls.store');
@@ -43,6 +33,14 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [ReportController::class, 'index'])->name('reports.index');
         Route::get('/monthly', [ReportController::class, 'monthly'])->name('reports.monthly');
         Route::get('/employee/{employee}', [ReportController::class, 'employee'])->name('reports.employee');
+    });
+
+    Route::middleware(['auth', 'admin.only'])->group(function () {
+        Route::get('/dashboard/admin', [DashboardController::class, 'admin'])->name('dashboard.admin');
+    });
+
+    Route::middleware(['auth', 'hr.access'])->group(function () {
+        Route::get('/dashboard/hr', [DashboardController::class, 'hr'])->name('dashboard.hr');
     });
 });
 
