@@ -31,11 +31,12 @@ Route::middleware('auth')->group(function () {
     //     return "welcome employee";
     // })->middleware(['employee.or.higher']);
 
+    Route::get('payrolls/generate', [PayrollController::class, 'create'])->name('payrolls.create');
+    Route::post('payrolls/generate', [PayrollController::class, 'store'])->name('payrolls.store');
+
     Route::resource('employees', EmployeeController::class)->middleware('check.role:admin,hr');
     Route::resource('parameters', ParameterController::class)->middleware('role.hierarchy:hr');
     Route::resource('payrolls', PayrollController::class)->middleware('role.hierarchy:hr');
-    Route::get('payrolls/generate', [PayrollController::class, 'create'])->name('payrolls.create');
-    Route::post('payrolls/generate', [PayrollController::class, 'store'])->name('payrolls.store');
 });
 
 
