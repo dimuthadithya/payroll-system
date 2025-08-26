@@ -19,8 +19,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'role',
         'email',
-        'password',
+        'password'
     ];
 
     /**
@@ -44,5 +45,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function isAdmin(): bool
+    {
+        return strtolower($this->role) === 'admin';
+    }
+
+    public function isHR(): bool
+    {
+        return strtolower($this->role) === 'hr';
+    }
+
+    public function hasAnyRole(array $roles): bool
+    {
+        return in_array(strtolower($this->role), array_map('strtolower', $roles));
     }
 }
