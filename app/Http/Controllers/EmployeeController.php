@@ -56,6 +56,7 @@ class EmployeeController extends Controller
      */
     public function edit(string $id)
     {
+        $employee = Employee::findOrFail($id);
         return view('employees.edit', compact('employee'));
     }
 
@@ -77,7 +78,7 @@ class EmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id, Employee $employee)
+    public function destroy(Employee $employee)
     {
         $employee->delete();
         return redirect()->route('employees.index')->with('success', 'Employee deleted successfully!');

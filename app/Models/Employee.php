@@ -19,6 +19,10 @@ class Employee extends Model
         'joined_at'
     ];
 
+    protected $casts = [
+        'joined_at' => 'date',  // automatically converts to Carbon
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
