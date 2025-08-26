@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-2xl font-bold text-gray-800">Payroll History: {{ $employee->name }}</h2>
+        <h2 class="text-2xl font-bold text-white">Payroll History: {{ $employee->name }}</h2>
     </x-slot>
 
     <div class="overflow-x-auto bg-white shadow rounded-lg">

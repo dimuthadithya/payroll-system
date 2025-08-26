@@ -6,11 +6,23 @@ use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $role = Auth::user()?->role;
+
+    switch ($role) {
+        case 'admin':
+            return redirect()->route('dashboard.admin');
+        case 'hr':
+            return redirect()->route('dashboard.hr');
+        case 'employee':
+            return redirect()->route('dashboard');
+        default:
+            return view('auth.login');
+    }
+})->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
