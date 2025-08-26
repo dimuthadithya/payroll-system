@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\Payroll;
 use App\Models\Parameter;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -27,5 +28,17 @@ class DashboardController extends Controller
         $totalNet = Payroll::whereMonth('month', Carbon::now()->month)->sum('net_salary');
 
         return view('dashboard.hr', compact('employees', 'payrolls', 'totalNet'));
+    }
+
+    public function employee()
+    {
+        $user = Auth::user();
+        $employee = $user->employee; // Assuming User hasOne Employee
+
+        $payrolls = $employee->payrolls()->orderBy('month', 'desc')->take(6)->get(); // Last 6 months
+        $latestPayroll = $payrolls->first();
+        $totalNet = $payrolls->sum('net_salary');
+
+        return view('dashboard.employee', compact('employee', 'payrolls', 'latestPayroll', 'totalNet'));
     }
 }

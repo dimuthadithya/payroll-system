@@ -56,6 +56,10 @@ Route::middleware('auth')->group(function () {
     });
 });
 
+Route::middleware(['auth', 'employee.or.higher'])->group(function () {
+    Route::get('/dashboard/employee', [DashboardController::class, 'employee'])->name('dashboard.employee');
+});
+
 
 
 

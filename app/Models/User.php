@@ -61,4 +61,10 @@ class User extends Authenticatable
     {
         return in_array(strtolower($this->role), array_map('strtolower', $roles));
     }
+
+    public function hasValidRole(): bool
+    {
+        $validRoles = ['admin', 'hr', 'employee'];
+        return in_array(strtolower($this->role), $validRoles);
+    }
 }
