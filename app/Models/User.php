@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return strtolower($this->role) === 'hr';
     }
+
+    public function hasAnyRole(array $roles): bool
+    {
+        return in_array(strtolower($this->role), array_map('strtolower', $roles));
+    }
 }
