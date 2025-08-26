@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-2xl font-bold text-gray-800">Monthly Payroll Summary</h2>
+        <h2 class="text-2xl font-bold text-white">Monthly Payroll Summary</h2>
     </x-slot>
 
     <form method="GET" action="{{ route('reports.monthly') }}" class="mb-6">

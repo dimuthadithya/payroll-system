@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-2xl font-bold text-gray-800">Payrolls</h2>
+        <h2 class="text-2xl font-bold text-white">Payrolls</h2>
     </x-slot>
 
     <div class="flex justify-between items-center mb-6">

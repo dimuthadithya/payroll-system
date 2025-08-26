@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-2xl font-bold text-gray-800">HR Dashboard</h2>
+        <h2 class="text-2xl font-bold text-white">HR Dashboard</h2>
     </x-slot>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
