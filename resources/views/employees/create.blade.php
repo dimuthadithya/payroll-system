@@ -5,9 +5,11 @@
         </h2>
     </x-slot>
 
-    <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow">
-        <a href="{{ route('employees.index') }}"
-            class="text-blue-600 hover:underline mb-4 inline-block">← Back to Employee List</a>
+    <div class="p-10 bg-white shadow-sm rounded-lg mx-48 mt-10">
+        <div class="flex justify-between items-center mb-6">
+            <a href="{{ route('employees.index') }}"
+                class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700">← Back to Employee List</a>
+        </div>
 
         @if ($errors->any())
         <div class="mb-4 p-4 bg-red-100 text-red-700 rounded-lg">

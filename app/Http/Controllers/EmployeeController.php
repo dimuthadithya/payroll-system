@@ -63,7 +63,7 @@ class EmployeeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id, Employee $employee)
+    public function update(Request $request, Employee $employee)
     {
         $request->validate([
             'name' => 'required',
