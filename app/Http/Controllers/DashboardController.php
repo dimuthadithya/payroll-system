@@ -33,7 +33,19 @@ class DashboardController extends Controller
     public function employee()
     {
         $user = Auth::user();
+        // Debug information
+        dd([
+            'user_id' => $user->id,
+            'user_email' => $user->email,
+            'has_employee' => $user->employee ? 'yes' : 'no'
+        ]);
+
         $employee = $user->employee; // Assuming User hasOne Employee
+
+        if (!$employee) {
+            // If no employee record exists, redirect with an error message
+            return redirect()->back()->with('error', 'No employee record found for your account. Please contact HR.');
+        }
 
         $payrolls = $employee->payrolls()->orderBy('month', 'desc')->take(6)->get(); // Last 6 months
         $latestPayroll = $payrolls->first();
