@@ -6,6 +6,7 @@ use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +55,9 @@ Route::middleware('auth')->group(function () {
     Route::middleware(['auth', 'hr.access'])->group(function () {
         Route::get('/dashboard/hr', [DashboardController::class, 'hr'])->name('dashboard.hr');
     });
+
+    Route::patch('/users/{user}/toggle-role', [UserController::class, 'toggleRole'])->name('users.toggleRole');
+    Route::get('/users/new', [UserController::class, 'newUsers'])->name('users.new');
 });
 
 Route::middleware(['auth', 'employee.or.higher'])->group(function () {

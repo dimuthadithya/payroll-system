@@ -18,15 +18,24 @@
                 <p class="text-3xl font-bold mt-2">{{ number_format($totalNet,2) }}</p>
             </div>
         </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-            <a href="{{ route('employees.index') }}" class="p-6 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 text-center font-semibold">
+            <a href="{{ route('employees.index') }}"
+                class="p-6 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 text-center font-semibold">
                 View Employees
             </a>
-            <a href="{{ route('payrolls.index') }}" class="p-6 bg-purple-600 text-white rounded-lg shadow hover:bg-purple-700 text-center font-semibold">
+            <a href="{{ route('payrolls.index') }}"
+                class="p-6 bg-purple-600 text-white rounded-lg shadow hover:bg-purple-700 text-center font-semibold">
                 View Payrolls
             </a>
-            <a href="{{ route('reports.index') }}" class="p-6 bg-orange-600 text-white rounded-lg shadow hover:bg-orange-700 text-center font-semibold">
+            <a href="{{ route('reports.index') }}"
+                class="p-6 bg-orange-600 text-white rounded-lg shadow hover:bg-orange-700 text-center font-semibold">
                 Reports
+            </a>
+            <!-- ✅ New Users button -->
+            <a href="{{ route('users.new') }}"
+                class="p-6 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 text-center font-semibold">
+                New Users
             </a>
         </div>
     </div>

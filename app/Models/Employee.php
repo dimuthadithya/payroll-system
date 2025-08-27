@@ -16,7 +16,7 @@ class Employee extends Model
         'position',
         'basic_salary',
         'bank_account',
-        'joined_at'
+        'joined_at',
     ];
 
     protected $casts = [

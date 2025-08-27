@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Payroll;
 use App\Models\Parameter;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,11 +24,14 @@ class DashboardController extends Controller
 
     public function hr()
     {
+
         $employees = Employee::count();
         $payrolls = Payroll::whereMonth('month', Carbon::now()->month)->count();
         $totalNet = Payroll::whereMonth('month', Carbon::now()->month)->sum('net_salary');
+        // New users this month (or last 30 days)
+        $newUsers = User::where('created_at', '>=', Carbon::now()->startOfMonth())->count();
 
-        return view('dashboard.hr', compact('employees', 'payrolls', 'totalNet'));
+        return view('dashboard.hr', compact('employees', 'payrolls', 'totalNet', 'newUsers'));
     }
 
     public function employee()

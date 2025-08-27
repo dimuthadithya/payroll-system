@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Admin User',
                 'role' => 'admin',
+                'status' => 'approved',
                 'email' => 'ad@ad.com',
                 'email_verified_at' => now(),
                 'password' => bcrypt('password')
@@ -24,13 +25,15 @@ class UserSeeder extends Seeder
             [
                 'name' => 'HR User',
                 'role' => 'hr',
+                'status' => 'approved',
                 'email' => 'hr@hr.com',
                 'email_verified_at' => now(),
                 'password' => bcrypt('password')
             ],
             [
                 'name' => 'Employee User',
-                'role' => 'employee',
+                'role' => 'new',
+                'status' => 'pending',
                 'email' => 'em@em.com',
                 'email_verified_at' => now(),
                 'password' => bcrypt('password')
